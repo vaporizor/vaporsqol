@@ -1,0 +1,24 @@
+{
+  "zoom": {
+    "enabled": true,
+    "minFOVModifier": 0.01,
+    "maxFOVModifier": 0.1,
+    "maxFOVStep": 0.02
+  },
+  "fullbright": {
+    "enabled": true,
+    "toggled": false,
+    "gamma": 15
+  },
+  "idle": {
+    "fps": {
+      "enabled": true,
+      "limit": 1
+    },
+    "renderDistance": {
+      "enabled": true,
+      "limit": 1
+    },
+    "muteAudio": true
+  }
+}

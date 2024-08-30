@@ -1,0 +1,18 @@
+{
+  "required": true,
+  "package": "com.github.vaporizor.vaporsqol.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "AbstractClientPlayerMixin",
+    "GameRendererMixin",
+    "LightTextureMixin",
+    "MouseHandlerMixin",
+    "OptionsMixin",
+    "SoundEngineMixin",
+    "WindowMixin"
+  ],
+  "plugin": "com.github.vaporizor.vaporsqol.VaporsQOLMixinPlugin",
+  "injectors": {
+    "defaultRequire": 1
+	}
+}
