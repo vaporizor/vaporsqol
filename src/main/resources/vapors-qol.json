@@ -7,8 +7,7 @@
   },
   "fullbright": {
     "enabled": true,
-    "toggled": false,
-    "gamma": 15
+    "toggled": false
   },
   "idle": {
     "fps": {

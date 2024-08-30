@@ -14,5 +14,5 @@
   "plugin": "com.github.vaporizor.vaporsqol.VaporsQOLMixinPlugin",
   "injectors": {
     "defaultRequire": 1
-	}
+  }
 }

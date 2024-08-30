@@ -4,7 +4,6 @@ package com.github.vaporizor.vaporsqol.config;
 public class FullBright {
     private boolean enabled;
     private boolean toggled;
-    private float gamma;
 
     private FullBright() {}
 
@@ -21,16 +20,11 @@ public class FullBright {
         VaporsQOLConfig.get().write();
     }
 
-    public float getGamma() {
-        return gamma;
-    }
-
     @Override
     public String toString() {
         return "FullBright{" +
                 "\nenabled=" + enabled +
                 ",\ntoggled=" + toggled +
-                ",\ngamma=" + gamma +
                 "\n}";
     }
 }

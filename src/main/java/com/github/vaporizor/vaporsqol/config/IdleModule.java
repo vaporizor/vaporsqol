@@ -7,19 +7,19 @@ public class IdleModule {
 
     private IdleModule() {}
 
-    @Override
-    public String toString() {
-        return "IdleModule{" +
-                "enabled=" + enabled +
-                ", limit=" + limit +
-                '}';
-    }
-
     public boolean isEnabled() {
         return enabled;
     }
 
     public int getLimit() {
         return limit;
+    }
+
+    @Override
+    public String toString() {
+        return "IdleModule{" +
+                "enabled=" + enabled +
+                ", limit=" + limit +
+                '}';
     }
 }

@@ -51,8 +51,6 @@ public class VaporsQOL implements ClientModInitializer {
 
 					config.getBrightConfig().setToggled(!config.getBrightConfig().isToggled());
 					done = true;
-
-					client.gameRenderer.close();
 				}
 			});
 		}
@@ -75,6 +73,8 @@ public class VaporsQOL implements ClientModInitializer {
 		if (zoom >= zoomConfig.getMaxFOVModifier()) zoom = zoomConfig.getMaxFOVModifier();
 	}
 
+	// For debugging
+	@SuppressWarnings("unused")
 	public static void log(String message) {
 		LOGGER.info(message);
 	}

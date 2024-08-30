@@ -1,6 +1,7 @@
 package com.github.vaporizor.vaporsqol;
 
 import com.github.vaporizor.vaporsqol.config.VaporsQOLConfig;
+
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
@@ -13,7 +14,7 @@ public class VaporsQOLMixinPlugin implements IMixinConfigPlugin {
     private static final String packageName = "com.github.vaporizor.vaporsqol.mixin";
 
     @Override
-    public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
+    public boolean shouldApplyMixin(String unused, String mixinClassName) {
         VaporsQOLConfig config = VaporsQOLConfig.get();
         boolean zoom = config.getZoomConfig().isEnabled();
         boolean bright = config.getBrightConfig().isEnabled();
@@ -22,13 +23,13 @@ public class VaporsQOLMixinPlugin implements IMixinConfigPlugin {
         boolean audio = config.getIdleConfig().isMuteAudioEnabled();
 
         return (
-                   (zoom && Objects.equals(mixinClassName, packageName + ".AbstractClientPlayerMixin"))
-                || (zoom && Objects.equals(mixinClassName, packageName + ".MouseHandlerMixin"))
-                || (zoom && Objects.equals(mixinClassName, packageName + ".GameRendererMixin"))
-                || (bright && Objects.equals(mixinClassName, packageName + ".LightTextureMixin"))
-                || ((fps) && Objects.equals(mixinClassName, packageName + ".WindowMixin"))
-                || (renderDist && Objects.equals(mixinClassName, packageName + ".OptionsMixin"))
-                || (audio && Objects.equals(mixinClassName, packageName + ".SoundEngineMixin"))
+               (zoom && Objects.equals(mixinClassName, packageName + ".AbstractClientPlayerMixin"))
+            || (zoom && Objects.equals(mixinClassName, packageName + ".MouseHandlerMixin"))
+            || (zoom && Objects.equals(mixinClassName, packageName + ".GameRendererMixin"))
+            || (bright && Objects.equals(mixinClassName, packageName + ".LightTextureMixin"))
+            || ((fps) && Objects.equals(mixinClassName, packageName + ".WindowMixin"))
+            || (renderDist && Objects.equals(mixinClassName, packageName + ".OptionsMixin"))
+            || (audio && Objects.equals(mixinClassName, packageName + ".SoundEngineMixin"))
         );
     }
 
