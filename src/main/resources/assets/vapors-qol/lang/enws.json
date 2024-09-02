@@ -1,5 +1,6 @@
 {
-  "category.vapors-qol.main": "Vapor's Device for the Bettering of Life",
-  "key.vapors-qol.zoom": "Enlarge the View",
-  "key.vapors-qol.bright": "Utterly Bright"
+    "category.vapors-qol.main": "Vapor's Device for the Bettering of Life",
+    "key.vapors-qol.zoom": "Enlarge the View",
+    "key.vapors-qol.bright": "Utterly Bright",
+    "effect.vapors-qol.fullbright": "Utter Brightness"
 }

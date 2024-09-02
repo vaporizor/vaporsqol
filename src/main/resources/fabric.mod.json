@@ -1,33 +1,33 @@
 {
-	"schemaVersion": 1,
-	"id": "vapors-qol",
-	"version": "${version}",
-	"name": "Vapor's QOL",
-	"description": "Various toggleable QOL features!",
-	"authors": [
-		"Vaporizor"
-	],
-	"contact": {
-		"homepage": "https://github.com/Vaporizor"
-	},
-	"license": "CC0-1.0",
-	"icon": "assets/vapors-qol/icon.png",
-	"environment": "client",
-	"entrypoints": {
-		"client": [
-			"com.github.vaporizor.vaporsqol.VaporsQOL"
-		]
-	},
-	"mixins": [
-		{
-			"config": "vapors-qol.mixins.json",
-			"environment": "client"
-		}
-	],
-	"depends": {
-		"fabricloader": ">=0.16.3",
-		"minecraft": "~1.21.1",
-		"java": ">=21",
-		"fabric-api": "*"
-	}
+    "schemaVersion": 1,
+    "id": "vapors-qol",
+    "version": "${version}",
+    "name": "Vapor's QOL",
+    "description": "Various toggleable QOL features!",
+    "authors": [
+        "Vaporizor"
+    ],
+    "contact": {
+        "homepage": "https://github.com/Vaporizor"
+    },
+    "license": "CC0-1.0",
+    "icon": "assets/vapors-qol/icon.png",
+    "environment": "client",
+    "entrypoints": {
+        "client": [
+            "com.github.vaporizor.vaporsqol.VaporsQOL"
+        ]
+    },
+    "mixins": [
+        {
+            "config": "vapors-qol.mixins.json",
+            "environment": "client"
+        }
+    ],
+    "depends": {
+        "fabricloader": ">=0.16.3",
+        "minecraft": "~1.21.1",
+        "java": ">=21",
+        "fabric-api": "*"
+    }
 }

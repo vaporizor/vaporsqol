@@ -1,23 +1,28 @@
 {
-  "zoom": {
     "enabled": true,
-    "minFOVModifier": 0.01,
-    "maxFOVModifier": 0.1,
-    "maxFOVStep": 0.02
-  },
-  "fullbright": {
-    "enabled": true,
-    "toggled": false
-  },
-  "idle": {
-    "fps": {
-      "enabled": true,
-      "limit": 1
+    "zoom": {
+        "enabled": true,
+        "minFOVModifier": 0.01,
+        "maxFOVModifier": 0.1,
+        "maxFOVStep": 0.02
     },
-    "renderDistance": {
-      "enabled": true,
-      "limit": 1
+    "fullbright": {
+        "enabled": true,
+        "toggled": false,
+        "visualIndicator": true
     },
-    "muteAudio": true
-  }
+    "idle": {
+        "fps": {
+            "enabled": true,
+            "limit": 1
+        },
+        "renderDistance": {
+            "enabled": true,
+            "limit": 0
+        },
+        "audio": {
+            "enabled": true,
+            "limit": 0
+        }
+    }
 }

@@ -1,5 +1,6 @@
 {
-  "category.vapors-qol.main": "Mister Puff’s Swashbucklin’ Ease o’ Life Fix",
-  "key.vapors-qol.zoom": "Adrift Spyglassin'",
-  "key.vapors-qol.bright": "Bright as the High Seas Illumination"
+    "category.vapors-qol.main": "Mister Puff’s Swashbucklin’ Ease o’ Life Fix",
+    "key.vapors-qol.zoom": "Adrift Spyglassin'",
+    "key.vapors-qol.bright": "Bright as the High Seas Illumination",
+    "effect.vapors-qol.fullbright": "High Seas Illumination"
 }

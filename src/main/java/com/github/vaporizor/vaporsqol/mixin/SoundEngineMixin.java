@@ -1,5 +1,7 @@
 package com.github.vaporizor.vaporsqol.mixin;
 
+import com.github.vaporizor.vaporsqol.VaporsQOLConfig;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -11,8 +13,9 @@ import net.minecraft.sounds.SoundSource;
 
 @Mixin(SoundEngine.class)
 class SoundEngineMixin {
-    @Inject(method = "getVolume", at = @At("RETURN"), cancellable = true)
+    @Inject(method = "getVolume", at = @At("HEAD"), cancellable = true)
     private void getModifiedVolume(SoundSource soundSource, CallbackInfoReturnable<Float> cir) {
-        if (!Minecraft.getInstance().isWindowActive()) cir.setReturnValue(0F);
+        if (!Minecraft.getInstance().isWindowActive())
+            cir.setReturnValue(VaporsQOLConfig.get().idleConfig().audio().limit());
     }
 }

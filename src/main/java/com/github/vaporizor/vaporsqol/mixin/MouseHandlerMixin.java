@@ -15,7 +15,7 @@ import net.minecraft.client.MouseHandler;
 class MouseHandlerMixin {
     @Inject(method = "onScroll", at = @At("HEAD"), cancellable = true)
     private void onScroll(long l, double d, double e, CallbackInfo ci) {
-        if (VaporsQOL.isZooming()) {
+        if (VaporsQOL.zooming()) {
             VaporsQOL.stepZoom((float) e, -10, 10);
             ci.cancel();
         }
@@ -23,6 +23,6 @@ class MouseHandlerMixin {
 
     @ModifyConstant(method = "turnPlayer", constant = @Constant(doubleValue = 0.6000000238418579))
     private double getModifiedSensitivityMultiplier(double vanillaMultiplier) {
-        return vanillaMultiplier * VaporsQOL.getZoom();
+        return vanillaMultiplier * VaporsQOL.getZoomLevel();
     }
 }

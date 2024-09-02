@@ -1,5 +1,6 @@
 {
-  "category.vapors-qol.main": "Steam's Life Betterment Change",
-  "key.vapors-qol.zoom": "Magnify",
-  "key.vapors-qol.bright": "Whole Shine"
+    "category.vapors-qol.main": "Steam's Life Betterment Change",
+    "key.vapors-qol.zoom": "Magnify",
+    "key.vapors-qol.bright": "Whole Shine",
+    "effect.vapors-qol.fullbright": "Whole Shine"
 }
