@@ -20,7 +20,7 @@
         },
         "renderDistance": {
             "enabled": true,
-            "limit": 5
+            "limit": 1
         },
         "audio": {
             "enabled": true,

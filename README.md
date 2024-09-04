@@ -102,7 +102,7 @@ The comments above each property describe what it's for, and the value shown nex
              * If the above is `true`, this property defines what render distance to lower the game to.
              * This value must be a whole number and cannot be smaller than 1.
              */
-            "limit": 5
+            "limit": 1
         },
         "audio": {
             // Enables / disables lowering the game's audio when it is out of focus.
