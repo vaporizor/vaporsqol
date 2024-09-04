@@ -3,13 +3,13 @@ package com.github.vaporizor.vaporsqol;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
+import com.google.gson.stream.JsonWriter;
 
 import net.fabricmc.loader.api.FabricLoader;
 
 import net.minecraft.client.Options;
 
 import static java.lang.Math.signum;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -25,6 +25,8 @@ public class VaporsQOLConfig {
     private static VaporsQOLConfig INSTANCE;
 
     private boolean enabled;
+    private boolean borderless;
+    private boolean playNoVolumeSounds;
     private ZoomConfig zoom;
     private FullBrightConfig fullbright;
     private IdleConfig idle;
@@ -81,7 +83,7 @@ public class VaporsQOLConfig {
         /* Needs to be force disabled if `limit` is a nonsensical value such as a negative number, hence not a record.
          * See get() static method below
          *
-         * Generics were avoided here to utilize Gson's automatic type validation, otherwise we'd have to manually
+         * Generics were avoided here to make use of Gson's automatic type validation, otherwise we'd have to manually
          * validate that `limit` is an integer / floating point value.
          */
         public static class IntModule {
@@ -112,6 +114,14 @@ public class VaporsQOLConfig {
 
     public boolean enabled() {
         return enabled;
+    }
+
+    public boolean borderless() {
+        return borderless;
+    }
+
+    public boolean playNoVolumeSounds() {
+        return playNoVolumeSounds;
     }
 
     public ZoomConfig zoomConfig() {
@@ -188,7 +198,9 @@ public class VaporsQOLConfig {
 
     private void write() {
         try (FileWriter writer = new FileWriter(CONFIG_FILE)) {
-            writer.write(GSON.toJson(this));
+            final JsonWriter jsonWriter = GSON.newJsonWriter(writer);
+            jsonWriter.setIndent("    ");
+            GSON.toJson(this, VaporsQOLConfig.class, jsonWriter);
         } catch (IOException exception) {
             VaporsQOL.err("Settings were not saved!", exception);
         }

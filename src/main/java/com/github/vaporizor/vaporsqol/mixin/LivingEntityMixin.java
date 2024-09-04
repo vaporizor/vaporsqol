@@ -23,8 +23,8 @@ import java.util.Map;
 class LivingEntityMixin {
     @Unique
     private static final MobEffectInstance NIGHT_VISION_INSTANCE = new MobEffectInstance(MobEffects.NIGHT_VISION, -1);
-
-    @Shadow @Final private Map<Holder<MobEffect>, MobEffectInstance> activeEffects;
+    @Shadow @Final
+    private Map<Holder<MobEffect>, MobEffectInstance> activeEffects;
 
     @Inject(method = "hasEffect", at = @At("HEAD"), cancellable = true)
     private void hasEffectOrFullBright(Holder<MobEffect> holder, CallbackInfoReturnable<Boolean> cir) {

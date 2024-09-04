@@ -6,12 +6,12 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 
-import net.minecraft.client.sounds.SoundEngine;
+import net.minecraft.client.sounds.SoundManager;
 
-@Mixin(SoundEngine.class)
-class SoundEngineMixin {
-    @ModifyConstant(method = "method_19750", constant = @Constant(floatValue = 0.0F))
-    private static float playNoVolumeSounds(float originalMin) {
+@Mixin(SoundManager.class)
+class SoundManagerMixin {
+    @ModifyConstant(method = "updateSourceVolume", constant = @Constant(floatValue = 0.0F))
+    private float playNoVolumeSounds(float originalMin) {
         if (VaporsQOLConfig.get().playNoVolumeSounds()) return -1;
         else return originalMin;
     }

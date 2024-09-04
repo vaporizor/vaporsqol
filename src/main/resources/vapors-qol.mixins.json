@@ -5,10 +5,11 @@
     "client": [
         "AbstractClientPlayerMixin",
         "GameRendererMixin",
+        "LivingEntityMixin",
+        "MinecraftMixin",
         "MouseHandlerMixin",
-        "OptionsMixin",
         "SoundEngineMixin",
-        "WindowMixin"
+        "SoundManagerMixin"
     ],
     "plugin": "com.github.vaporizor.vaporsqol.VaporsQOLMixinPlugin",
     "injectors": {

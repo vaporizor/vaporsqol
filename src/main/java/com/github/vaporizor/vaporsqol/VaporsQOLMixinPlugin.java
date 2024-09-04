@@ -19,16 +19,17 @@ public class VaporsQOLMixinPlugin implements IMixinConfigPlugin {
         final boolean FPS = CONFIG.idleConfig().fps().enabled();
         final boolean RENDER_DIST = CONFIG.idleConfig().renderDistance().enabled();
         final boolean AUDIO = CONFIG.idleConfig().audio().enabled();
+        final boolean NO_VOLUME_SOUND = CONFIG.playNoVolumeSounds();
 
         return (
             CONFIG.enabled() && (
                (ZOOM && Objects.equals(mixinClassName, MIXIN_PACKAGE_NAME + ".AbstractClientPlayerMixin")) ||
                (ZOOM && Objects.equals(mixinClassName, MIXIN_PACKAGE_NAME + ".MouseHandlerMixin")) ||
-               (ZOOM && Objects.equals(mixinClassName, MIXIN_PACKAGE_NAME + ".GameRendererMixin")) ||
+               ((ZOOM || RENDER_DIST) && Objects.equals(mixinClassName, MIXIN_PACKAGE_NAME + ".GameRendererMixin")) ||
                (BRIGHT && Objects.equals(mixinClassName, MIXIN_PACKAGE_NAME + ".LivingEntityMixin")) ||
-               (FPS && Objects.equals(mixinClassName, MIXIN_PACKAGE_NAME + ".WindowMixin")) ||
-               (RENDER_DIST && Objects.equals(mixinClassName, MIXIN_PACKAGE_NAME + ".OptionsMixin")) ||
-               (AUDIO && Objects.equals(mixinClassName, MIXIN_PACKAGE_NAME + ".SoundEngineMixin"))
+               ((FPS || AUDIO) && Objects.equals(mixinClassName, MIXIN_PACKAGE_NAME + ".MinecraftMixin")) ||
+               (NO_VOLUME_SOUND && Objects.equals(mixinClassName, MIXIN_PACKAGE_NAME + ".SoundManagerMixin")) ||
+               (NO_VOLUME_SOUND && Objects.equals(mixinClassName, MIXIN_PACKAGE_NAME + ".SoundEngineMixin"))
             )
         );
     }

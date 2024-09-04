@@ -1,5 +1,7 @@
 {
     "enabled": true,
+    "borderless": false,
+    "playNoVolumeSounds": true,
     "zoom": {
         "enabled": true,
         "minFOVModifier": 0.01,
@@ -14,11 +16,11 @@
     "idle": {
         "fps": {
             "enabled": true,
-            "limit": 1
+            "limit": 5
         },
         "renderDistance": {
             "enabled": true,
-            "limit": 1
+            "limit": 5
         },
         "audio": {
             "enabled": true,
