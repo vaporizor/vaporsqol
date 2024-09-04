@@ -27,7 +27,9 @@ Requires:
 *More to come! Have any ideas? Open an [Issue](../../issues) or submit a [Pull Request](../../pulls)*.
 
 ### Configuration
-The comment above each property describes what it does, and the value of each property represents the default.
+The configuration file can found at `./config/vapors-qol.json` in your Minecraft directory.
+
+The comments above each property describe what it's for, and the value shown next to it is the default.
 ```json5
 {
     // Enables / disables the entire mod. Set this to false if you want to disable loading any mixins.
