@@ -1,6 +1,6 @@
 package com.github.vaporizor.vaporsqol.mixin;
 
-import com.github.vaporizor.vaporsqol.VaporsQOLConfig;
+import com.github.vaporizor.vaporsqol.VQConfig;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Constant;
@@ -12,7 +12,7 @@ import net.minecraft.client.sounds.SoundManager;
 class SoundManagerMixin {
     @ModifyConstant(method = "updateSourceVolume", constant = @Constant(floatValue = 0.0F))
     private float playNoVolumeSounds(float originalMin) {
-        if (VaporsQOLConfig.get().playNoVolumeSounds()) return -1;
+        if (VQConfig.I.playSoundsWithNoVolume()) return -1;
         else return originalMin;
     }
 }

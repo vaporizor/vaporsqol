@@ -1,7 +1,8 @@
 package com.github.vaporizor.vaporsqol.mixin;
 
-import com.github.vaporizor.vaporsqol.VaporsQOLConfig;
+import com.github.vaporizor.vaporsqol.VQConfig;
 
+import com.github.vaporizor.vaporsqol.VaporsQOL;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -27,13 +28,13 @@ class LivingEntityMixin {
     private Map<Holder<MobEffect>, MobEffectInstance> activeEffects;
 
     @Inject(method = "hasEffect", at = @At("HEAD"), cancellable = true)
-    private void hasEffectOrFullBright(Holder<MobEffect> holder, CallbackInfoReturnable<Boolean> cir) {
+    private void hasEffectOrFullbright(Holder<MobEffect> holder, CallbackInfoReturnable<Boolean> cir) {
         if (shouldOverride(this) && holder == MobEffects.NIGHT_VISION)
             cir.setReturnValue(true);
     }
 
     @Inject(method = "getEffect", at = @At("RETURN"), cancellable = true)
-    private void getEffectOrFullBright(Holder<MobEffect> holder, CallbackInfoReturnable<MobEffectInstance> cir) {
+    private void getEffectOrFullbright(Holder<MobEffect> holder, CallbackInfoReturnable<MobEffectInstance> cir) {
         if (
             shouldOverride(this) &&
             holder == MobEffects.NIGHT_VISION &&
@@ -44,9 +45,6 @@ class LivingEntityMixin {
 
     @Unique
     private boolean shouldOverride(Object instance) {
-        return (
-            instance instanceof LocalPlayer &&
-            VaporsQOLConfig.get().brightConfig().toggled()
-        );
+        return instance instanceof LocalPlayer && VaporsQOL.fullbright();
     }
 }

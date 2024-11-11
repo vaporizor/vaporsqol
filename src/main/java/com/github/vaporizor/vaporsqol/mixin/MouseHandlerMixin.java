@@ -23,6 +23,6 @@ class MouseHandlerMixin {
 
     @ModifyConstant(method = "turnPlayer", constant = @Constant(doubleValue = 0.6000000238418579))
     private double getModifiedSensitivityMultiplier(double vanillaMultiplier) {
-        return vanillaMultiplier * VaporsQOL.getZoomLevel();
+        return vanillaMultiplier * VaporsQOL.zoomModifier();
     }
 }

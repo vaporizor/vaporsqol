@@ -11,7 +11,7 @@
         "SoundEngineMixin",
         "SoundManagerMixin"
     ],
-    "plugin": "com.github.vaporizor.vaporsqol.VaporsQOLMixinPlugin",
+    "plugin": "com.github.vaporizor.vaporsqol.VQMixinPlugin",
     "injectors": {
         "defaultRequire": 1
     },

@@ -1,6 +1,6 @@
 package com.github.vaporizor.vaporsqol.mixin;
 
-import com.github.vaporizor.vaporsqol.VaporsQOLConfig;
+import com.github.vaporizor.vaporsqol.VQConfig;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Constant;
@@ -11,8 +11,8 @@ import net.minecraft.client.sounds.SoundEngine;
 @Mixin(SoundEngine.class)
 class SoundEngineMixin {
     @ModifyConstant(method = "method_19750", constant = @Constant(floatValue = 0.0F))
-    private static float playNoVolumeSounds(float originalMin) {
-        if (VaporsQOLConfig.get().playNoVolumeSounds()) return -1;
+    private static float playSoundsWithNoVolume(float originalMin) {
+        if (VQConfig.I.playSoundsWithNoVolume()) return -1;
         else return originalMin;
     }
 }

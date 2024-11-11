@@ -1,10 +1,8 @@
 package com.github.vaporizor.vaporsqol.mixin;
 
-import static com.github.vaporizor.vaporsqol.VaporsQOLConfig.IdleConfig;
-import static com.github.vaporizor.vaporsqol.VaporsQOLConfig.IdleConfig.IntModule;
-import static com.github.vaporizor.vaporsqol.VaporsQOLConfig.IdleConfig.FloatModule;
-import com.github.vaporizor.vaporsqol.VaporsQOLConfig;
+import com.github.vaporizor.vaporsqol.VQConfig;
 
+import com.mojang.blaze3d.platform.FramerateLimitTracker;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -26,26 +24,20 @@ class MinecraftMixin {
     @Shadow @Final private Window window;
 
     @Inject(method = "setWindowActive", at = @At("TAIL"))
-    private void idleOptimizations(boolean bl, CallbackInfo ci) {
-        final IdleConfig IDLE_CONFIG = VaporsQOLConfig.get().idleConfig();
+    private void AFKTweaks(boolean windowActive, CallbackInfo ci) {
+        int normalFPS = options.framerateLimit().get();
+        FramerateLimitTracker flt = Minecraft.getInstance().getFramerateLimitTracker();
+        if (normalFPS > VQConfig.I.fps() && flt != null)
+            flt.setFramerateLimit(windowActive ? normalFPS : VQConfig.I.fps());
 
-        final FloatModule AUDIO_CONFIG = IDLE_CONFIG.audio();
-        if (AUDIO_CONFIG.enabled() && soundManager != null) {
-            final float normalVolume = options.getSoundSourceVolume(SoundSource.MASTER);
-            if (normalVolume > AUDIO_CONFIG.limit())
+        if (soundManager != null) {
+            float normalVolume = options.getSoundSourceVolume(SoundSource.MASTER);
+            if (normalVolume > VQConfig.I.volume()) {
                 soundManager.updateSourceVolume(
-                        SoundSource.MASTER,
-                        bl ? normalVolume : AUDIO_CONFIG.limit()
+                    SoundSource.MASTER,
+                    windowActive ? normalVolume : VQConfig.I.volume()
                 );
+            }
         }
-
-
-        final IntModule FPS_CONFIG = IDLE_CONFIG.fps();
-        if (FPS_CONFIG.enabled()) {
-            final int normalFPS = options.framerateLimit().get();
-            if (normalFPS > FPS_CONFIG.limit())
-                window.setFramerateLimit(bl ? normalFPS : FPS_CONFIG.limit());
-        }
-
     }
 }

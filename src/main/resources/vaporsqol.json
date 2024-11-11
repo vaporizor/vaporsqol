@@ -1,0 +1,20 @@
+{
+    "enabled": true,
+    "borderless": false,
+    "play-sounds-with-no-volume": true,
+    "zoom": {
+        "enabled": true,
+        "min-fov-modifier": 0.01,
+        "max-fov-modifier": 0.1,
+        "fov-step": 0.02
+    },
+    "fullbright": {
+        "enabled": true,
+        "indicator": true
+    },
+    "afk": {
+        "fps": 5,
+        "render": 1,
+        "volume": 0.0
+    }
+}

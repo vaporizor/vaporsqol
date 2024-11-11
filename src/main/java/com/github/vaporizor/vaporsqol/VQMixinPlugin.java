@@ -8,25 +8,24 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-public class VaporsQOLMixinPlugin implements IMixinConfigPlugin {
+public class VQMixinPlugin implements IMixinConfigPlugin {
     private static String MIXIN_PACKAGE_NAME;
 
     @Override
     public boolean shouldApplyMixin(String unused, String mixinClassName) {
-        final VaporsQOLConfig CONFIG = VaporsQOLConfig.get();
-        final boolean ZOOM = CONFIG.zoomConfig().enabled();
-        final boolean BRIGHT = CONFIG.brightConfig().enabled();
-        final boolean FPS = CONFIG.idleConfig().fps().enabled();
-        final boolean RENDER_DIST = CONFIG.idleConfig().renderDistance().enabled();
-        final boolean AUDIO = CONFIG.idleConfig().audio().enabled();
-        final boolean NO_VOLUME_SOUND = CONFIG.playNoVolumeSounds();
+        final boolean ZOOM = VQConfig.I.zoom();
+        final boolean FB = VQConfig.I.fullbright();
+        final boolean FPS = VQConfig.I.fps() > 0;
+        final boolean RENDER_DIST = VQConfig.I.render() > 0;
+        final boolean AUDIO = VQConfig.I.volume() >= 0;
+        final boolean NO_VOLUME_SOUND = VQConfig.I.playSoundsWithNoVolume();
 
         return (
-            CONFIG.enabled() && (
+            VQConfig.I.enabled() && (
                (ZOOM && Objects.equals(mixinClassName, MIXIN_PACKAGE_NAME + ".AbstractClientPlayerMixin")) ||
                (ZOOM && Objects.equals(mixinClassName, MIXIN_PACKAGE_NAME + ".MouseHandlerMixin")) ||
                ((ZOOM || RENDER_DIST) && Objects.equals(mixinClassName, MIXIN_PACKAGE_NAME + ".GameRendererMixin")) ||
-               (BRIGHT && Objects.equals(mixinClassName, MIXIN_PACKAGE_NAME + ".LivingEntityMixin")) ||
+               (FB && Objects.equals(mixinClassName, MIXIN_PACKAGE_NAME + ".LivingEntityMixin")) ||
                ((FPS || AUDIO) && Objects.equals(mixinClassName, MIXIN_PACKAGE_NAME + ".MinecraftMixin")) ||
                (NO_VOLUME_SOUND && Objects.equals(mixinClassName, MIXIN_PACKAGE_NAME + ".SoundManagerMixin")) ||
                (NO_VOLUME_SOUND && Objects.equals(mixinClassName, MIXIN_PACKAGE_NAME + ".SoundEngineMixin"))

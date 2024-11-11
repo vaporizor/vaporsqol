@@ -15,6 +15,6 @@ class AbstractClientPlayerMixin {
     private void getModifiedFieldOfViewModifier(CallbackInfoReturnable<Float> cir) {
         float fov = cir.getReturnValue();
         if (fov > 1.5) fov = 1.5F;
-        cir.setReturnValue(fov * VaporsQOL.getZoomLevel());
+        cir.setReturnValue(fov * VaporsQOL.zoomModifier());
     }
 }

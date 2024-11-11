@@ -1,7 +1,6 @@
 package com.github.vaporizor.vaporsqol.mixin;
 
-import static com.github.vaporizor.vaporsqol.VaporsQOLConfig.IdleConfig.IntModule;
-import com.github.vaporizor.vaporsqol.VaporsQOLConfig;
+import com.github.vaporizor.vaporsqol.VQConfig;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import net.minecraft.client.Minecraft;
@@ -20,15 +19,13 @@ class GameRendererMixin {
 
 	@ModifyConstant(method = "tickFov", constant = @Constant(floatValue = 0.1F))
 	private float getMinFov(float originalMin) {
-		if (VaporsQOLConfig.get().zoomConfig().enabled()) return 0.0001F;
+		if (VQConfig.I.zoom()) return 0.0001F;
 		else return originalMin;
 	}
 
 	@ModifyExpressionValue(method = "renderLevel", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Options;getEffectiveRenderDistance()I"))
 	public int getModifiedRenderDistance(int originalDist) {
-		final IntModule config = VaporsQOLConfig.get().idleConfig().renderDistance();
-		if (config.enabled() && !minecraft.isWindowActive() && config.limit() < originalDist)
-			return config.limit();
+		if (!minecraft.isWindowActive() && VQConfig.I.render() < originalDist) return VQConfig.I.render();
 		else return originalDist;
 	}
 }

@@ -1,6 +1,6 @@
 {
     "schemaVersion": 1,
-    "id": "vapors-qol",
+    "id": "vaporsqol",
     "version": "${version}",
     "name": "Vapor's QOL",
     "description": "Various toggleable QOL features!",
@@ -8,10 +8,10 @@
         "Vaporizor"
     ],
     "contact": {
-        "homepage": "https://github.com/Vaporizor"
+        "homepage": "https://github.com/Vaporizor/vaporsqol"
     },
-    "license": "CC0-1.0",
-    "icon": "assets/vapors-qol/icon.png",
+    "license": "GPL-3.0",
+    "icon": "assets/vaporsqol/icon.png",
     "environment": "client",
     "entrypoints": {
         "client": [
@@ -20,7 +20,7 @@
     },
     "mixins": [
         {
-            "config": "vapors-qol.mixins.json",
+            "config": "vaporsqol.mixins.json",
             "environment": "client"
         }
     ],
