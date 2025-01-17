@@ -15,7 +15,8 @@ import net.minecraft.client.renderer.GameRenderer;
 
 @Mixin(GameRenderer.class)
 class GameRendererMixin {
-	@Shadow @Final Minecraft minecraft;
+	@Shadow @Final
+	private Minecraft minecraft;
 
 	@ModifyConstant(method = "tickFov", constant = @Constant(floatValue = 0.1F))
 	private float getMinFov(float originalMin) {
@@ -25,7 +26,7 @@ class GameRendererMixin {
 
 	@ModifyExpressionValue(method = "renderLevel", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Options;getEffectiveRenderDistance()I"))
 	public int getModifiedRenderDistance(int originalDist) {
-		if (!minecraft.isWindowActive() && VQConfig.I.render() < originalDist) return VQConfig.I.render();
+		if (!minecraft.isWindowActive() && VQConfig.I.renderLimit() < originalDist) return VQConfig.I.renderLimit();
 		else return originalDist;
 	}
 }

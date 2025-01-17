@@ -10,7 +10,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import com.mojang.blaze3d.platform.Window;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.Options;
 import net.minecraft.client.sounds.SoundManager;
@@ -21,21 +20,21 @@ abstract
 class MinecraftMixin {
     @Shadow @Final private SoundManager soundManager;
     @Shadow @Final public Options options;
-    @Shadow @Final private Window window;
 
     @Inject(method = "setWindowActive", at = @At("TAIL"))
     private void AFKTweaks(boolean windowActive, CallbackInfo ci) {
         int normalFPS = options.framerateLimit().get();
         FramerateLimitTracker flt = Minecraft.getInstance().getFramerateLimitTracker();
-        if (normalFPS > VQConfig.I.fps() && flt != null)
-            flt.setFramerateLimit(windowActive ? normalFPS : VQConfig.I.fps());
+        // null check is not unnecessary
+        if (normalFPS > VQConfig.I.fpsLimit() && flt != null)
+            flt.setFramerateLimit(windowActive ? normalFPS : VQConfig.I.fpsLimit());
 
         if (soundManager != null) {
             float normalVolume = options.getSoundSourceVolume(SoundSource.MASTER);
-            if (normalVolume > VQConfig.I.volume()) {
+            if (normalVolume > VQConfig.I.volumeLimit()) {
                 soundManager.updateSourceVolume(
                     SoundSource.MASTER,
-                    windowActive ? normalVolume : VQConfig.I.volume()
+                    windowActive ? normalVolume : VQConfig.I.volumeLimit()
                 );
             }
         }

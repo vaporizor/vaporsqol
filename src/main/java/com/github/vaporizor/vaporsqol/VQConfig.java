@@ -53,34 +53,46 @@ public enum VQConfig {
     ) {}
 
     private record AFK(
-        int fps,
-        int render,
-        float volume
+        int fpsLimit,
+        int renderLimit,
+        float volumeLimit
     ) {
         public AFK {
-            if (fps == 0 || render == 0) {
-                fps = Math.min(1, fps);
-                render = Math.min(1, render);
-                VaporsQOL.err("FPS and render distance limits cannot be configured to 0; clamping to 1.");
+            if (fpsLimit < 1) {
+                fpsLimit = 1;
+                VaporsQOL.err("AFK FPS limit cannot be configured to 0; clamping to 1.");
+            }
+            if (renderLimit < 1) {
+                renderLimit = 1;
+                VaporsQOL.err("AFK render distance limit cannot be configured to 0; clamping to 1.");
             }
         }
     }
 
     static {
-        try {
-            data = GSON.fromJson(new FileReader(CONFIG_FILE), Data.class);
+        try (FileReader reader = new FileReader(CONFIG_FILE)) {
+            data = GSON.fromJson(reader, Data.class);
         } catch (FileNotFoundException | JsonSyntaxException exception) {
-            if (exception instanceof JsonSyntaxException) VaporsQOL.err("Found bad JSON syntax in existing configuration, using default configuration values for this session.\n", exception);
-            else VaporsQOL.warn(String.format("Could not find an existing configuration file at '%s', attempting to create it.", CONFIG_FILE.getAbsolutePath()));
-            try (InputStream stream = Thread.currentThread().getContextClassLoader().getResourceAsStream(CONFIG_FILE.getName())) {
-                if (stream == null) throw new FileNotFoundException();
-                data = GSON.fromJson(new String(stream.readAllBytes(), Charset.defaultCharset()), Data.class);
+            if (exception instanceof JsonSyntaxException) {
+                VaporsQOL.err("Found bad JSON syntax in existing configuration, using default configuration values for this session.\n", exception);
+                I.readDefault();
+            } else {
+                VaporsQOL.warn("Could not read an existing configuration file at " + CONFIG_FILE.getAbsolutePath() + ", attempting to create it.");
+                I.readDefault();
                 I.write();
-                VaporsQOL.log("Configuration file created successfully!");
-            } catch (IOException ioException) {
-                VaporsQOL.err("Could not load default configuration; disabling Vapor's QOL.", ioException);
-                data = new Data(false, false, false, null, null, null);
             }
+        } catch (IOException ioException) {
+            VaporsQOL.err("Closing configuration file reader failed.", ioException);
+        }
+    }
+
+    private void readDefault() {
+        try (InputStream stream = Thread.currentThread().getContextClassLoader().getResourceAsStream(CONFIG_FILE.getName())) {
+            if (stream == null) throw new FileNotFoundException();
+            data = GSON.fromJson(new String(stream.readAllBytes(), Charset.defaultCharset()), Data.class);
+        } catch (IOException ioException) {
+            VaporsQOL.err("Could not read default configuration; disabling Vapor's QOL.", ioException);
+            data = new Data(false, false, false, null, null, null);
         }
     }
 
@@ -89,8 +101,9 @@ public enum VQConfig {
             JsonWriter jsonWriter = GSON.newJsonWriter(writer);
             jsonWriter.setIndent("    ");
             GSON.toJson(data, Data.class, jsonWriter);
+            VaporsQOL.log("Successfully saved configuration!");
         } catch (IOException exception) {
-            VaporsQOL.err("Settings were not saved!", exception);
+            VaporsQOL.err("Configuration was not saved!", exception);
         }
     }
 
@@ -131,15 +144,15 @@ public enum VQConfig {
         return data.fullbright().indicator();
     }
 
-    public int fps() {
-        return data.AFK().fps();
+    public int fpsLimit() {
+        return data.AFK().fpsLimit();
     }
 
-    public int render() {
-        return data.AFK().render();
+    public int renderLimit() {
+        return data.AFK().renderLimit();
     }
 
-    public float volume() {
-        return data.AFK().volume();
+    public float volumeLimit() {
+        return data.AFK().volumeLimit();
     }
 }

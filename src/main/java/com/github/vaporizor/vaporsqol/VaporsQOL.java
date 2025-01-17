@@ -83,14 +83,6 @@ public class VaporsQOL implements ClientModInitializer {
         });
     }
 
-    public static boolean zooming() {
-        return zoom != 1;
-    }
-
-    public static float zoomModifier() {
-        return zoom;
-    }
-
     /*
      * The specifics of this method have been lost to time so sad.
      * I don't know what half of this does anymore but too scared to change it so...
@@ -105,6 +97,14 @@ public class VaporsQOL implements ClientModInitializer {
         }
     }
 
+    public static boolean zooming() {
+        return zoom != 1;
+    }
+
+    public static float zoomModifier() {
+        return zoom;
+    }
+
     private void setupFullbright() {
         final KeyMapping FB_BINDING = KeyBindingHelper.registerKeyBinding(new KeyMapping(
             KEYBINDING_FB_NAMESPACE,
@@ -113,18 +113,9 @@ public class VaporsQOL implements ClientModInitializer {
             KEYBINDING_CATEGORY_NAMESPACE
         ));
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            boolean done = false;
-            while (FB_BINDING.consumeClick()) {
-                if (done) continue;
-                toggleFullbright(client.player);
-                done = true;
-            }
+            while (FB_BINDING.consumeClick()) toggleFullbright(client.player);
         });
         if (VQConfig.I.indicator()) registerFullbrightEffect();
-    }
-
-    public static boolean fullbright() {
-        return fullbright;
     }
 
     private void registerFullbrightEffect() {
@@ -138,6 +129,10 @@ public class VaporsQOL implements ClientModInitializer {
             if (fullbright) player.addEffect(FB_EFFECT_INSTANCE);
             else player.removeEffect(FB_EFFECT_ID);
         }
+    }
+
+    public static boolean fullbright() {
+        return fullbright;
     }
 
     public static void log(String message) {
