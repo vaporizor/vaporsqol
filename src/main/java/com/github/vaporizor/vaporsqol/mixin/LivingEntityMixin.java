@@ -1,7 +1,5 @@
 package com.github.vaporizor.vaporsqol.mixin;
 
-import com.github.vaporizor.vaporsqol.VQConfig;
-
 import com.github.vaporizor.vaporsqol.VaporsQOL;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;

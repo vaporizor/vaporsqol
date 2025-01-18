@@ -5,8 +5,6 @@ This mod aims to bundle as many of these tweaks as possible in a difficult-to-br
 
 Available for most versions of Minecraft starting from 1.21.1
 
-*I need to think of a better name for this project soon >_<*
-
 ### Features
 - **Zoom** Default keybinding: `V`
     - Scroll to zoom further.
@@ -21,14 +19,14 @@ Available for most versions of Minecraft starting from 1.21.1
     - **This is disabled by default and can only be enabled through the `"borderless"` property in the [configuration](#configuration).**
     - *Warning: only tested on a few machines. Please create an [Issue](/../../issues) if it does not work for you!*
 - **Other Tweaks**:
-    - Continue playing sounds when the audio is muted: Vanilla Minecraft will stop playing any ongoing sounds if you lower the game's volume completely. This feature removes this behavior so you can continue hearing the sound if you turn your volume up again!
+    - Continue playing sounds when the audio is muted: Vanilla Minecraft will stop playing any ongoing sounds if you lower the game's volume completely. This feature removes this behavior, so you can continue hearing the sound if you turn your volume up again!
 
 *More to come! Have any ideas? Open an [Issue](../../issues) or submit a [Pull Request](../../pulls)*.
 
 ### Configuration
 The configuration file can found at `./config/vaporsqol.json` in your Minecraft directory.
 
-Disabling any of the configurable features below will also prevent the mod from registering related keybindings and mixins. You can use this to debug compatibility issues with other mods!
+Disabling any of the configurable features below will also disable registering related keybindings and mixins. You can use this to debug compatibility issues with other mods!
 
 The comments above each setting describe what it does, and the value shown next to it is the default.
 ```json5
@@ -82,26 +80,26 @@ The comments above each setting describe what it does, and the value shown next 
          * Limits the FPS the of the game when out of focus. Must be a whole
          * number and cannot be 0. If set to -1, the feature is disabled.
          */
-        "fps": 5,
+        "fps-limit": 5,
          /*
           * Limits the render distance of the game when out of focus. Must
           * be a whole number and cannot be 0. If set to -1, the feature is
           * disabled.
           */
-        "render": 1,
+        "render-limit": 1,
          /*
           * Reduces the volume of the game when out of focus. Must be
           * a number between 0 and 1 where 0 is completely muted and 1 is
           * max volume.
           * If set to -1, the feature is disabled.
           */
-        "volume": 0.0
+        "volume-limit": 0.0
     }
 }
 ```
 
 ### Contributions
-All contributions are gladly welcome, although reviewing time *may* be slow depending on my availability and discretion.
+All contributions are gladly welcome, including raising any issues or requesting features. Please allow some time for review depending on my availability and discretion.
 
 ### Usage and Distribution
 This project is licensed under the [GNU GPL v3.0 license](https://license.com) which needs to be respected; a tl;dr of which can be found at https://choosealicense.com/licenses/gpl-3.0.

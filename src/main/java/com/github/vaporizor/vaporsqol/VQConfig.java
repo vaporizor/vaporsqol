@@ -58,11 +58,11 @@ public enum VQConfig {
         float volumeLimit
     ) {
         public AFK {
-            if (fpsLimit < 1) {
+            if (fpsLimit == 0) {
                 fpsLimit = 1;
                 VaporsQOL.err("AFK FPS limit cannot be configured to 0; clamping to 1.");
             }
-            if (renderLimit < 1) {
+            if (renderLimit == 0) {
                 renderLimit = 1;
                 VaporsQOL.err("AFK render distance limit cannot be configured to 0; clamping to 1.");
             }

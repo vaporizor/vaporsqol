@@ -15,9 +15,9 @@ public class VQMixinPlugin implements IMixinConfigPlugin {
     public boolean shouldApplyMixin(String unused, String mixinClassName) {
         final boolean ZOOM = VQConfig.I.zoom();
         final boolean FB = VQConfig.I.fullbright();
-        final boolean FPS = VQConfig.I.fps() > 0;
-        final boolean RENDER_DIST = VQConfig.I.render() > 0;
-        final boolean AUDIO = VQConfig.I.volume() >= 0;
+        final boolean FPS = VQConfig.I.fpsLimit() > 0;
+        final boolean RENDER_DIST = VQConfig.I.renderLimit() > 0;
+        final boolean AUDIO = VQConfig.I.volumeLimit() >= 0;
         final boolean NO_VOLUME_SOUND = VQConfig.I.playSoundsWithNoVolume();
 
         return (

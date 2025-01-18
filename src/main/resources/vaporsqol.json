@@ -13,8 +13,8 @@
         "indicator": true
     },
     "afk": {
-        "fps": 5,
-        "render": 1,
-        "volume": 0.0
+        "fps-limit": 5,
+        "render-limit": 1,
+        "volume-limit": 0.0
     }
 }
