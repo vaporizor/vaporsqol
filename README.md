@@ -1,5 +1,5 @@
 # Vapor's QOL
-A [Fabric](https://fabricmc.net/) modification to Minecraft with various quality of life tweaks to the game!.
+A [Fabric](https://fabricmc.net/) modification to Minecraft with various quality of life tweaks to the game!
 
 This mod aims to bundle as many of these tweaks as possible in a difficult-to-break and easy-to-update fashion.
 
